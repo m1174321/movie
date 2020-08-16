@@ -14,11 +14,33 @@ public class Movie extends PageBean {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date showTime;
 
+    private Integer num;
+
     private BigDecimal price;
 
     private Integer showHome;
 
     private String imgUrl;
+
+    private Integer hid;
+
+    private String  hname;
+
+    public Integer getHid() {
+        return hid;
+    }
+
+    public void setHid(Integer hid) {
+        this.hid = hid;
+    }
+
+    public String getHname() {
+        return hname;
+    }
+
+    public void setHname(String hname) {
+        this.hname = hname;
+    }
 
     public Integer getMid() {
         return mid;
@@ -66,5 +88,13 @@ public class Movie extends PageBean {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 }

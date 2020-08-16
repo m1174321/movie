@@ -4,6 +4,38 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fh.mapper.MovieMapper">
 
+    <sql id="movie">
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat ('%',#{name},'%')
+            </if>
+        </where>
+    </sql>
 
+
+    <select id="findProjectionRedis" resultType="com.fh.entity.Projection">
+        select * from t_projection
+    </select>
+
+    <select id="findMovie" resultType="com.fh.entity.Movie" parameterType="com.fh.entity.MovieParam">
+        select
+        *
+        from t_movie
+        <include refid="movie"></include>
+        limit #{start},#{length}
+    </select>
+
+    <update id="updateOneNum">
+        update t_movie set num = num-1 where mid = #{mid} ;
+    </update>
+
+    <insert id="addMovie" parameterType="com.fh.entity.Movie">
+        insert into t_movie (name,showTime,num,price,showHome,imgUrl)
+        values (#{name},#{showTime},#{num},#{price},#{showHome},#{imgUrl});
+    </insert>
+
+    <select id="findMovieCount" parameterType="com.fh.utils.PageBean" resultType="long">
+      select count(*) from t_movie
+    </select>
 
 </mapper>
